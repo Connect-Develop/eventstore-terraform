@@ -1,0 +1,4 @@
+terraform-apply.tfplan
+terraform-destroy.tfplan
+terraform.tfstate.backup
+terraform.tfvars

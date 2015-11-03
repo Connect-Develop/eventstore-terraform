@@ -12,3 +12,10 @@ variable "aws_profile" {
 variable "aws_key_pair" {
     default = "key-pair"
 }
+
+variable "prefix" { default = "evs-test-" }
+variable "tags" { 
+    default = {
+        Usage = "local-testing"
+    }
+}

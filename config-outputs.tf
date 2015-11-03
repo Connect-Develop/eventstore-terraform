@@ -5,22 +5,22 @@ output "aws.profile" {
     value = "${var.aws_profile}"
 }
 
-output "vpc.eventstore.id" {
-    value = "${aws_vpc.eventstore.id}"
+output "vpc.id" {
+    value = "${aws_vpc.vpc.id}"
 }
-output "vpc.eventstore.evs-route-table" {
-    value = "${aws_route_table.evs-route-table.id}"
+output "vpc.evs-route-table" {
+    value = "${aws_route_table.vpc-route-table.id}"
 }
-output "vpc.eventstore.cidr" {
-    value = "${aws_vpc.eventstore.cidr_block}"
+output "vpc.cidr" {
+    value = "${aws_vpc.vpc.cidr_block}"
 }
 
-output "evs-primary-node" {
-    value = "${aws_instance.evs-primary-node.id}"
+output "eventstore-primary-node" {
+    value = "${aws_instance.eventstore-primary-node.id}"
 }
-output "evs-primary-node.public_ip" {
-    value = "${aws_instance.evs-primary-node.public_ip}"
+output "eventstore-primary-node.public_ip" {
+    value = "${aws_instance.eventstore-primary-node.public_ip}"
 }
-output "evs-primary-node.http" {
-    value = "http://${aws_instance.evs-primary-node.public_ip}:2113/"
+output "eventstore-primary-node.http" {
+    value = "http://${aws_instance.eventstore-primary-node.public_ip}:2113/"
 }

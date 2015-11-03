@@ -2,8 +2,8 @@
 resource "aws_instance" "evs-primary-node" {
     subnet_id = "${aws_subnet.evs-subnet-a.id}"
     availability_zone = "${var.aws_region}a"
-    ami = "ami-a388fd99" #ubuntu vivid 15.04 DEVEL amd64 hvm:ebs
-    instance_type = "t2.micro"
+    ami = "${lookup(var.images, var.aws_region)}"
+    instance_type = "${var.instance_type}"
     key_name = "${var.aws_key_pair}"
     security_groups = [
         "${aws_security_group.evs-group.id}",

@@ -1,5 +1,5 @@
 #!/bin/bash
-ES_VERSION="3.0.1"
+ES_VERSION="3.3.0"
 ES_DATA_DIR="/srv/eventstore/db"
 ES_LOGS_DIR="/srv/eventstore/logs"
 ES_USER="eventstore"
@@ -9,7 +9,7 @@ IP_PUBLIC=`curl http://169.254.169.254/latest/meta-data/public-ipv4`
 DST_TMP="/tmp"
 DST_OPT="/opt"
 
-ES_BASE="EventStore-OSS-Linux-v${ES_VERSION}"
+ES_BASE="EventStore-OSS-Ubuntu-v${ES_VERSION}"
 ES_TARBALL="${ES_BASE}.tar.gz"
 DOWNLOAD_URL="http://download.geteventstore.com/binaries/${ES_TARBALL}"
 
@@ -44,7 +44,7 @@ cat > /etc/supervisor/conf.d/eventstore.conf <<CONFEOF
 [program:eventstore]
 #user=${ES_USER}
 directory=${DST_OPT}/${ES_BASE}/
-command=/bin/bash -c "cd ${DST_OPT}/${ES_BASE} && ${DST_OPT}/${ES_BASE}/run-node.sh -Db ${ES_DATA_DIR} -Log ${ES_LOGS_DIR} --int-ip=${IP_LOCAL} --ext-ip=${IP_LOCAL} --http-prefixes=\"http://*:2113/\" --run-projections=all"
+command=/bin/bash -c "cd ${DST_OPT}/${ES_BASE} && ${DST_OPT}/${ES_BASE}/run-node.sh -Db ${ES_DATA_DIR} -Log ${ES_LOGS_DIR} --int-ip=${IP_LOCAL} --ext-ip=0.0.0.0 --run-projections=all"
 autostart=true
 autorestart=true
 startsecs=60

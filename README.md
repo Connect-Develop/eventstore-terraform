@@ -1,6 +1,6 @@
 # Provision [EventStore](https://geteventstore.com) with [Terraform](https://www.terraform.io/)
 
-Quick [Terraform v0.6.6](https://www.terraform.io/) configuration to setup [EventStore v3.3.0](https://geteventstore.com) in single-node running on ubuntu 15.10 in any public AWS region.
+Quick [Terraform v0.8.6](https://www.terraform.io/) configuration to setup [EventStore v3.9.1](https://geteventstore.com) in single-node running on ubuntu 16.04 in any public AWS region.
 
 ## Running 
 

@@ -9,7 +9,7 @@ data "aws_ami" "instance" {
 
 resource "aws_instance" "eventstore-primary-node" {
     subnet_id = "${aws_subnet.vpc-subnet-a.id}"
-    availability_zone = "${var.aws_region}a"
+    availability_zone = "${data.aws_region.current.name}a"
     ami = "${data.aws_ami.instance.id}"
     instance_type = "${var.instance_type}"
     key_name = "${var.aws_key_pair}"
@@ -26,7 +26,7 @@ resource "aws_instance" "eventstore-primary-node" {
 
     tags = {
         Name = "${var.prefix}eventstore-primary-node"
-        Usage = "${var.tags.Usage}"
+        Usage = "${var.tags["Usage"]}"
     }
 
     user_data = "${file("eventstore-cloudinit.sh")}"

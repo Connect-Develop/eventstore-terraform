@@ -5,7 +5,7 @@ resource "aws_vpc" "vpc" {
     enable_dns_hostnames = true
     tags = {
         Name = "${var.prefix}eventstore-vpc"
-        Usage = "${var.tags.Usage}"
+        Usage = "${var.tags["Usage"]}"
     }
 }
 
@@ -14,33 +14,33 @@ resource "aws_internet_gateway" "vpc-gw" {
 
     tags = {
         Name = "${var.prefix}eventstore-vpc"
-        Usage = "${var.tags.Usage}"
+        Usage = "${var.tags["Usage"]}"
     }
 }
 
 resource "aws_subnet" "vpc-subnet-a" {
     vpc_id = "${aws_vpc.vpc.id}"
-    availability_zone = "${var.aws_region}a"
+    availability_zone = "${data.aws_region.current.name}a"
 
     cidr_block = "172.29.56.0/25"
     map_public_ip_on_launch = false
 
     tags = {
         Name = "${var.prefix}eventstore-vpc-a"
-        Usage = "${var.tags.Usage}"
+        Usage = "${var.tags["Usage"]}"
     }
 }
 
 resource "aws_subnet" "vpc-subnet-b" {
     vpc_id = "${aws_vpc.vpc.id}"
-    availability_zone = "${var.aws_region}b"
+    availability_zone = "${data.aws_region.current.name}b"
 
     cidr_block = "172.29.56.128/25"
     map_public_ip_on_launch = false
 
     tags = {
         Name = "${var.prefix}eventstore-vpc-b"
-        Usage = "${var.tags.Usage}"
+        Usage = "${var.tags["Usage"]}"
     }
 }
 
@@ -53,7 +53,7 @@ resource "aws_route_table" "vpc-route-table" {
 
     tags = {
         Name = "${var.prefix}eventstore-vpc"
-        Usage = "${var.tags.Usage}"
+        Usage = "${var.tags["Usage"]}"
     }
 }
 
@@ -81,7 +81,7 @@ resource "aws_security_group" "eventstore-group" {
     vpc_id = "${aws_vpc.vpc.id}"
 
     tags = {
-        Usage = "${var.tags.Usage}"
+        Usage = "${var.tags["Usage"]}"
     }
 }
 
@@ -99,7 +99,7 @@ resource "aws_security_group" "eventstore-ingress-ssh" {
     vpc_id = "${aws_vpc.vpc.id}"
 
     tags = {
-        Usage = "${var.tags.Usage}"
+        Usage = "${var.tags["Usage"]}"
     }
 }
 
@@ -123,7 +123,7 @@ resource "aws_security_group" "eventstore-ingress" {
     vpc_id = "${aws_vpc.vpc.id}"
 
     tags = {
-        Usage = "${var.tags.Usage}"
+        Usage = "${var.tags["Usage"]}"
     }
 }
 
@@ -147,6 +147,6 @@ resource "aws_security_group" "eventstore-internal" {
     vpc_id = "${aws_vpc.vpc.id}"
 
     tags = {
-        Usage = "${var.tags.Usage}"
+        Usage = "${var.tags["Usage"]}"
     }
 }

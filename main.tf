@@ -1,5 +1,28 @@
+provider "aws" { }
+
+data "aws_region" "current" {
+  current = true
+}
+
+variable "aws_profile" {
+    default = "aws"
+}
+
+variable "aws_key_pair" {
+    default = "key-pair"
+}
+
+variable "prefix" { default = "evs-test-" }
+variable "tags" { 
+    default = {
+        Usage = "local-testing"
+    }
+}
+
+variable "instance_type" { default = "t2.micro"}
+
 output "aws.region" {
-    value = "${var.aws_region}"
+    value = "${data.aws_region.current.name}"
 }
 output "aws.profile" {
     value = "${var.aws_profile}"

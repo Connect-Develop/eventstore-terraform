@@ -1,15 +1,16 @@
 #!/bin/bash
-ES_VERSION="3.3.0"
+ES_VERSION="3.9.3"
+ES_VARIANT="Ubuntu-14.04"
 ES_DATA_DIR="/srv/eventstore/db"
 ES_LOGS_DIR="/srv/eventstore/logs"
 ES_USER="eventstore"
-IP_LOCAL=`curl http://169.254.169.254/latest/meta-data/local-ipv4`
-IP_PUBLIC=`curl http://169.254.169.254/latest/meta-data/public-ipv4`
+IP_LOCAL=$(curl http://169.254.169.254/latest/meta-data/local-ipv4)
+IP_PUBLIC=$(curl http://169.254.169.254/latest/meta-data/public-ipv4)
 
 DST_TMP="/tmp"
 DST_OPT="/opt"
 
-ES_BASE="EventStore-OSS-Ubuntu-v${ES_VERSION}"
+ES_BASE="EventStore-OSS-${ES_VARIANT}-v${ES_VERSION}"
 ES_TARBALL="${ES_BASE}.tar.gz"
 DOWNLOAD_URL="http://download.geteventstore.com/binaries/${ES_TARBALL}"
 

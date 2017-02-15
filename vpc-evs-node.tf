@@ -1,8 +1,16 @@
+data "aws_ami" "instance" {
+    most_recent = true
+    filter {
+        name = "name"
+        values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server*"]
+    }
+    owners = ["099720109477"]
+}
 
 resource "aws_instance" "eventstore-primary-node" {
     subnet_id = "${aws_subnet.vpc-subnet-a.id}"
     availability_zone = "${var.aws_region}a"
-    ami = "${lookup(var.images, var.aws_region)}"
+    ami = "${data.aws_ami.instance.id}"
     instance_type = "${var.instance_type}"
     key_name = "${var.aws_key_pair}"
     security_groups = [

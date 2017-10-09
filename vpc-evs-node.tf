@@ -29,5 +29,5 @@ resource "aws_instance" "eventstore-primary-node" {
         Usage = "${var.tags["Usage"]}"
     }
 
-    user_data = "${file("eventstore-cloudinit.sh")}"
+    user_data = "${file("${path.module}/eventstore-cloudinit.sh")}"
 }

@@ -45,7 +45,7 @@ cat > /etc/supervisor/conf.d/eventstore.conf <<CONFEOF
 [program:eventstore]
 #user=${ES_USER}
 directory=${DST_OPT}/${ES_BASE}/
-command=/bin/bash -c "cd ${DST_OPT}/${ES_BASE} && ${DST_OPT}/${ES_BASE}/run-node.sh -Db ${ES_DATA_DIR} -Log ${ES_LOGS_DIR} --int-ip=${IP_LOCAL} --ext-ip=0.0.0.0 --run-projections=all"
+command=/bin/bash -c "cd ${DST_OPT}/${ES_BASE} && ${DST_OPT}/${ES_BASE}/run-node.sh -Db ${ES_DATA_DIR} -Log ${ES_LOGS_DIR} --int-ip=${IP_LOCAL} --ext-ip=0.0.0.0 --run-projections=all --start-standard-projections=true"
 autostart=true
 autorestart=true
 startsecs=60
